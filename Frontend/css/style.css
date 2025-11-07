@@ -1,0 +1,25 @@
+.delete-button {
+  color: red;
+  cursor: pointer;
+  height: auto;
+  width: auto;
+  border-radius: 15%;
+  border-color: black;
+  border: 0px;
+  background-color: transparent;
+}
+
+.edit-button {
+  color: blue;
+  cursor: pointer;
+  height: auto;
+  width: auto;
+  border-radius: 15%;
+  border-color: black;
+  border: 0px;
+  background-color: transparent;
+}
+
+.progresss {
+  cursor: pointer;
+}
