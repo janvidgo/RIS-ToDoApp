@@ -38,3 +38,37 @@ Za zagon naše To-do aplikacije moramo najprej imeti na računalniku nameščeno
 Ker aplikacija uporablja MySQL driver je potrebno namestiti MySQL Server, ustvariti bazo, uporabnika in geslo: GesloZaEkipo123, saj je tako nastavljeno v application.properties datoteki. Za delo s podatkovno bazo mora imeti nameščeno tudi orodje, npr. MySQL Workbench.
  
 Ker frontend uporablja Node.js in Express za zagon lokalnega strežnika, mora uporabnik namestiti: Node.js (namestitev samodejno vključuje program npm) in nato v mapi frontenda izvesti ukaz: npm install.  S tem se ustvari mapa node_modules in namesti Express ter ostale potrebne knjižnice. Ko so knjižnice nameščene, frontend zažene z: npm start. Aplikacija se nato odpre na naslovu: http://localhost:3123/notes.html.
+
+NAVODILA ZA RAZVIJALCE
+
+DELO Z GIT REPOZITORIJEM
+-Pred začetkom dela vedno pridobi najnovejšo verzijo kode:
+       git pull origin main
+-Po končanem delu dodaj in potrdi spremembe:
+       git add .
+       git commit -m "Kratek opis spremembe"
+-Nato spremembe objavi na repozitorij:
+       git push origin main
+-Uporabljaj kratka in jasna sporočila, ki opisujejo, kaj si naredil:
+       ✅ Dodana funkcionalnost za urejanje nalog
+       ✅ Popravljena napaka pri validaciji vnosa
+       ❌ popravek ali test
+
+
+PRAVILA ZA PRISPEVANJE
+-Po končanem delu preveri, da se projekt uspešno prevede
+-Preveri, da aplikacija deluje brez napak in da spremembe ne povzročajo težav v drugih delih sistema
+-Testiraj osnovne funkcionalnosti aplikacije (dodajanje, urejanje, brisanje nalog) in preveri, da delujejo pravilno
+-Ne briši ali spreminjaj kode drugih članov brez dogovora
+-Če spremeniš strukturo projekta ali datotek, o tem obvesti ekipo.
+
+SLOG IN STANDARD KODE
+Backend (Java, Maven)
+-Uporabljaj Java 21 in sledi standardnim Java konvencijam (camelCase za metode in spremenljivke, PascalCase za razrede)
+-Logiko razdeli po slojih: restController, vao, repository
+-Vse naj bo v paketu si.um.feri.ris.todo_app
+Frontend(Node.js)
+-Poskrbi, da so vsi zahtevki na backend jasno definirani in testirani
+-Uporabljaj Bootstrap 5.3.0
+-Imena id-jev in class-ov naj bodo v camelCase
+
