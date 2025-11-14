@@ -37,7 +37,7 @@ Za zagon naše To-do aplikacije moramo najprej imeti na računalniku nameščeno
 
 Ker aplikacija uporablja MySQL driver je potrebno namestiti MySQL Server, ustvariti bazo, uporabnika in geslo: GesloZaEkipo123, saj je tako nastavljeno v application.properties datoteki. Za delo s podatkovno bazo mora imeti nameščeno tudi orodje, npr. MySQL Workbench – priporočena verzija za MySQL Workbench je 8.0.
 
-Ker frontend uporablja Node.js in Express za zagon lokalnega strežnika, mora uporabnik namestiti: Node.js (namestitev samodejno vključuje program npm) in nato v mapi frontenda izvesti ukaz: npm install. S tem se ustvari mapa node_modules in namesti Express ter ostale potrebne knjižnice. Ko so knjižnice nameščene, frontend zažene z: npm start. Aplikacija se nato odpre na naslovu: http://localhost:3123/notes.html.
+Ker frontend uporablja Node.js in Express za zagon lokalnega strežnika, mora uporabnik namestiti: Node.js (namestitev samodejno vključuje program npm) in nato v mapi frontenda izvesti ukaz: **npm install**. S tem se ustvari mapa node_modules in namesti Express ter ostale potrebne knjižnice. Ko so knjižnice nameščene, frontend zažene z: **npm start**. Aplikacija se nato odpre na naslovu: http://localhost:3123/notes.html.
 
 NAVODILA ZA RAZVIJALCE
 
