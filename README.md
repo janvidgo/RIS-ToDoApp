@@ -5,41 +5,70 @@ ToDoApp je sodobna aplikacija za upravljanje opravil, zasnovana je z namenom, da
 
 Struktura projekta
 ToDoApp/
+
 ├── Backend/
+
 │   ├── .idea/  
 │   ├── todo_app/  
 │   ├── .mvn/wrapper/ 
+
 │   │   └── maven-wrapper.properties
-│   ├── src/              
+
+│   ├── src/           
 │   │   ├── main/
+
 │   │   ├── java/si/um/feri/ris/todo_app/
+
 │   │   │   ├── repository/
+
 │   │   │   ├── restController/ 
+
 │   │   │   ├── vao/
+
 │   │   │   └── TodoAppApplication.java
+
 │   │   │
 │   │   └── resources/
+
 │   │       └── application.propertiesBoot
+
 │   │
+
 │   └── test/java/si/um/feri/ris/todo_app/
+
 │       └── TodoAppApplicationTests.java
+
 │   ├── pom.xml  
 │   ├── mvnw, mvnw.cmd
+
 │   ├── .gitignore           
+
 │   └── .gitattributes
+
 │
 ├── Frontend/ 
+
 │   ├── css/
+
 │   │   └── style.css 
+
 │   ├── js/
+
 │   │   └── notes.js 
+
 │   ├── notes.html 
+
 │   ├── server.js
+
 │   ├── package.json
+
 │   ├── package-lock.json
+
 │   └── .gitignore
 │
+
 ├── TO_DO mysql.sql 
+
 └── README.md
 
 Orodja, ogrodja, knjižnice in različice
