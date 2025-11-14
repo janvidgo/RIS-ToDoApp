@@ -4,72 +4,45 @@ Vizija
 ToDoApp je sodobna aplikacija za upravljanje opravil, zasnovana je z namenom, da uporabnikom olajša organizacijo vsakodnevnih zadolžitev. Aplikacija omogoča hitro dodajanje opravil, urejanje njihovih podatkov ter brisanje. Za boljšo preglednost vsebuje filtriranje po imenu opravila ter po minimalnem ali maksimalnem napredku, kar uporabniku omogoča, da najde hitro želene informacije. Poseben poudarek je namenjen vizualni predstavitvi napredka: barvna lestvica (rdeča – rumena – zelena) intuitivno prikaže, kako daleč je opravilo izvedeno. Tako uporabnik že na prvi pogled vidi stanje posameznega opravila. Aplikacija ponuja tudi možnost ponastavitve vseh filtrov, pri čemer se ponovno prikaže celoten seznam opravil. ToDoApp združuje preprostost in preglednost, ki uporabniku omogoča, da enostavno spremlja in upravlja svoja opravila.
 
 Struktura projekta
+```
 ToDoApp/
-
 ├── Backend/
-
 │   ├── .idea/  
 │   ├── todo_app/  
 │   ├── .mvn/wrapper/ 
-
 │   │   └── maven-wrapper.properties
-
-│   ├── src/           
+│   ├── src/              
 │   │   ├── main/
-
 │   │   ├── java/si/um/feri/ris/todo_app/
-
 │   │   │   ├── repository/
-
 │   │   │   ├── restController/ 
-
 │   │   │   ├── vao/
-
 │   │   │   └── TodoAppApplication.java
-
 │   │   │
 │   │   └── resources/
-
-│   │       └── application.propertiesBoot
-
+│   │       └── application.properties
 │   │
-
 │   └── test/java/si/um/feri/ris/todo_app/
-
 │       └── TodoAppApplicationTests.java
-
 │   ├── pom.xml  
 │   ├── mvnw, mvnw.cmd
-
 │   ├── .gitignore           
-
 │   └── .gitattributes
-
 │
 ├── Frontend/ 
-
 │   ├── css/
-
 │   │   └── style.css 
-
 │   ├── js/
-
 │   │   └── notes.js 
-
 │   ├── notes.html 
-
 │   ├── server.js
-
 │   ├── package.json
-
 │   ├── package-lock.json
-
 │   └── .gitignore
 │
-
 ├── TO_DO mysql.sql 
-
 └── README.md
+```
 
 Orodja, ogrodja, knjižnice in različice
 - Java JDK 21
