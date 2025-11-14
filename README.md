@@ -30,14 +30,14 @@ Standardi kodiranja
 - API poti: snake-case GET /zapis, PUT /zapis/{id}, DELETE /zapis/{id}
 - Arhitektura: MVC (Controller → Service → Repository → Model)
 
-Navodila za nameščanje in zagon aplikacije
 
+NAVODILA ZA NAMEŠČANJE IN ZAGON APLIKACIJE
 
 Za zagon naše To-do aplikacije moramo najprej imeti na računalniku nameščeno razvijalno okolje. Zaradi tega, ker je aplikacija napisana v programskem jeziku Java (21) je priporočljivo imeti razvijalno okolje IntelliJ IDEA verzija 2023.3 ali novejše. Če bo uporabnik uporabljal katero drugo razvijalno okolje, ki nima vgrajenega Maven-a, si mora naložiti še slednjega. Ko imamo razvijalno okolje nameščeno, potrebujemo Java Development Kit (JDK) 21.
- 
-Ker aplikacija uporablja MySQL driver je potrebno namestiti MySQL Server, ustvariti bazo, uporabnika in geslo: GesloZaEkipo123, saj je tako nastavljeno v application.properties datoteki. Za delo s podatkovno bazo mora imeti nameščeno tudi orodje, npr. MySQL Workbench.
- 
-Ker frontend uporablja Node.js in Express za zagon lokalnega strežnika, mora uporabnik namestiti: Node.js (namestitev samodejno vključuje program npm) in nato v mapi frontenda izvesti ukaz: npm install.  S tem se ustvari mapa node_modules in namesti Express ter ostale potrebne knjižnice. Ko so knjižnice nameščene, frontend zažene z: npm start. Aplikacija se nato odpre na naslovu: http://localhost:3123/notes.html.
+
+Ker aplikacija uporablja MySQL driver je potrebno namestiti MySQL Server, ustvariti bazo, uporabnika in geslo: GesloZaEkipo123, saj je tako nastavljeno v application.properties datoteki. Za delo s podatkovno bazo mora imeti nameščeno tudi orodje, npr. MySQL Workbench – priporočena verzija za MySQL Workbench je 8.0.
+
+Ker frontend uporablja Node.js in Express za zagon lokalnega strežnika, mora uporabnik namestiti: Node.js (namestitev samodejno vključuje program npm) in nato v mapi frontenda izvesti ukaz: npm install. S tem se ustvari mapa node_modules in namesti Express ter ostale potrebne knjižnice. Ko so knjižnice nameščene, frontend zažene z: npm start. Aplikacija se nato odpre na naslovu: http://localhost:3123/notes.html.
 
 NAVODILA ZA RAZVIJALCE
 
