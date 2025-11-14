@@ -72,3 +72,24 @@ Frontend(Node.js)
 -Uporabljaj Bootstrap 5.3.0
 -Imena id-jev in class-ov naj bodo v camelCase
 
+BESEDNJAK
+
+| Ime                  | Opis                                                                 |
+|----------------------|----------------------------------------------------------------------|
+| **Naloga**           | Element v seznamu, ki predstavlja posamezno obveznost ali aktivnost, ki jo želi uporabnik opraviti. |
+| **Ime naloge**       | Naslov naloge, ki na kratko opisuje, za kaj gre.                     |
+| **Opis naloge**      | Dodatno besedilo informacij o nalogi; uporabnik lahko zapiše podrobnosti ali opombe. |
+| **Dodaj**            | Gumb, s katerim uporabnik ustvari novo nalogo in jo doda v seznam.   |
+| **To-do list**       | Glavni del aplikacije, kjer so izpisane vse dodane naloge. Prikazuje ime, minimalni napredek, maksimalni napredek, gumb za filtriranje in gumb ponastavi. |
+| **Napredek**         | Odstotek, ki prikazuje, kako daleč je uporabnik z izvedbo naloge.    |
+| **Minimalni napredek** | Spodnja vrednost, ko želimo filtrirati naloge po odstotku opravljenosti. |
+| **Maksimalni napredek** | Zgornja vrednost, ko želimo filtrirati naloge po odstotku opravljenosti. |
+| **Uredi**            | Gumb, ki omogoča spreminjanje: imena naloge, opisa, napredka.        |
+| **Uredi zapis**      | Pojavno okno, kjer lahko uporabnik spremeni ime naloge ali opis naloge. |
+| **Uredi napredek**   | Pojavno okno, kjer lahko uporabnik nastavi odstotek napredka z drsnikom. |
+| **Izbriši**          | Gumb za trajno odstranitev naloge iz seznama.                        |
+| **Shrani**           | Gumb, ki potrdi spremembe pri urejanju.                              |
+| **Prekliči**         | Gumb, ki zapre okno za urejanje brez shranjevanja sprememb.          |
+| **Filtriraj**        | Razdelek, ki omogoča iskanje nalog glede na: ime, minimalni napredek, maksimalni napredek. |
+| **Ponastavi**        | Gumb, ki izbriše filtre in ponovno prikaže vse naloge.               |
+
