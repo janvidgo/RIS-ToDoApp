@@ -136,3 +136,9 @@ BESEDNJAK
 | **Filtriraj**        | Razdelek, ki omogoča iskanje nalog glede na: ime, minimalni napredek, maksimalni napredek. |
 | **Ponastavi**        | Gumb, ki izbriše filtre in ponovno prikaže vse naloge.               |
 
+
+DIAGRAM POTEKA UPORABE
+
+
+<img width="668" height="501" alt="DPU_ris drawio" src="https://github.com/user-attachments/assets/e9562b5a-7a1a-420e-b01f-0a048c18b4df" />
+
