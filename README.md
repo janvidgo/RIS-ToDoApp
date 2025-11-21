@@ -139,6 +139,7 @@ BESEDNJAK
 
 DIAGRAM POTEKA UPORABE
 
+<img width="668" height="691" alt="DPU_ris drawio (2)" src="https://github.com/user-attachments/assets/1976499a-8ff2-4647-9fb8-17bfe36dccd4" />
 
-<img width="668" height="501" alt="DPU_ris drawio" src="https://github.com/user-attachments/assets/e9562b5a-7a1a-420e-b01f-0a048c18b4df" />
+
 
