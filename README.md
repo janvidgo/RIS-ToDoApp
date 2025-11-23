@@ -143,7 +143,7 @@ DIAGRAM POTEKA UPORABE
 
 PODROBEN OPIS VSEH PRIMEROV UPORABE
 
-<img width="941" height="495" alt="id1" src="https://github.com/user-attachments/assets/9e2af5f9-ad40-4c21-b0b5-f6ae5fde1d4b" />
+<img width="641" height="395" alt="id1" src="https://github.com/user-attachments/assets/9e2af5f9-ad40-4c21-b0b5-f6ae5fde1d4b" />
 
 
 <img width="653" height="394" alt="Screenshot 2025-11-23 at 19 35 49" src="https://github.com/user-attachments/assets/8be65407-adf1-4fc3-ae33-b7457fdae83e" />
@@ -152,7 +152,7 @@ PODROBEN OPIS VSEH PRIMEROV UPORABE
 <img width="649" height="322" alt="Screenshot 2025-11-23 at 19 35 53" src="https://github.com/user-attachments/assets/37962798-86d5-4c33-8ab9-4754d70faa4a" />
 
 
-<img width="937" height="568" alt="id4" src="https://github.com/user-attachments/assets/0acd41d4-363a-4950-bb0a-83d5deb271b2" />
+<img width="637" height="368" alt="id4" src="https://github.com/user-attachments/assets/0acd41d4-363a-4950-bb0a-83d5deb271b2" />
 
 
 <img width="647" height="283" alt="Screenshot 2025-11-23 at 19 35 10" src="https://github.com/user-attachments/assets/f82efbd0-a6ba-4397-9c95-ed6983129e41" />
@@ -164,15 +164,19 @@ PODROBEN OPIS VSEH PRIMEROV UPORABE
 <img width="656" height="294" alt="Screenshot 2025-11-23 at 19 35 44" src="https://github.com/user-attachments/assets/714f8fe7-fca7-4f6e-bce1-c7805a6cb254" />
 
 
-<img width="942" height="463" alt="id8" src="https://github.com/user-attachments/assets/e806bcd0-687f-4015-858d-ab9ec9c52788" />
+<img width="642" height="363" alt="id8" src="https://github.com/user-attachments/assets/e806bcd0-687f-4015-858d-ab9ec9c52788" />
 
 
-<img width="938" height="506" alt="id9" src="https://github.com/user-attachments/assets/9b46d937-2c71-4fe1-ae81-0853f365be67" />
+<img width="658" height="401" alt="Screenshot 2025-11-23 at 19 35 56" src="https://github.com/user-attachments/assets/c7ef718f-f267-4a9f-bef9-8ab99e7bfa30" />
 
 
-<img width="658" height="321" alt="Screenshot 2025-11-23 at 19 35 56" src="https://github.com/user-attachments/assets/c7ef718f-f267-4a9f-bef9-8ab99e7bfa30" />
+<img width="638" height="406" alt="id9" src="https://github.com/user-attachments/assets/9b46d937-2c71-4fe1-ae81-0853f365be67" />
 
 
+<img width="644" height="303" alt="id11" src="https://github.com/user-attachments/assets/371eecdd-259d-424a-9536-fd3cd86d1ad4" />
+
+
+<img width="639" height="444" alt="Screenshot 2025-11-23 204953" src="https://github.com/user-attachments/assets/3dd7c21b-c2d6-427d-822b-a5ac964f5e92" />
 
 
 
