@@ -143,10 +143,16 @@ DIAGRAM POTEKA UPORABE
 
 PODROBEN OPIS VSEH PRIMEROV UPORABE
 
+<img width="941" height="495" alt="id1" src="https://github.com/user-attachments/assets/9e2af5f9-ad40-4c21-b0b5-f6ae5fde1d4b" />
+
+
 <img width="653" height="394" alt="Screenshot 2025-11-23 at 19 35 49" src="https://github.com/user-attachments/assets/8be65407-adf1-4fc3-ae33-b7457fdae83e" />
 
 
 <img width="649" height="322" alt="Screenshot 2025-11-23 at 19 35 53" src="https://github.com/user-attachments/assets/37962798-86d5-4c33-8ab9-4754d70faa4a" />
+
+
+<img width="937" height="568" alt="id4" src="https://github.com/user-attachments/assets/0acd41d4-363a-4950-bb0a-83d5deb271b2" />
 
 
 <img width="647" height="283" alt="Screenshot 2025-11-23 at 19 35 10" src="https://github.com/user-attachments/assets/f82efbd0-a6ba-4397-9c95-ed6983129e41" />
@@ -156,6 +162,12 @@ PODROBEN OPIS VSEH PRIMEROV UPORABE
 
 
 <img width="656" height="294" alt="Screenshot 2025-11-23 at 19 35 44" src="https://github.com/user-attachments/assets/714f8fe7-fca7-4f6e-bce1-c7805a6cb254" />
+
+
+<img width="942" height="463" alt="id8" src="https://github.com/user-attachments/assets/e806bcd0-687f-4015-858d-ab9ec9c52788" />
+
+
+<img width="938" height="506" alt="id9" src="https://github.com/user-attachments/assets/9b46d937-2c71-4fe1-ae81-0853f365be67" />
 
 
 <img width="658" height="321" alt="Screenshot 2025-11-23 at 19 35 56" src="https://github.com/user-attachments/assets/c7ef718f-f267-4a9f-bef9-8ab99e7bfa30" />
