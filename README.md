@@ -141,5 +141,26 @@ DIAGRAM POTEKA UPORABE
 
 <img width="668" height="691" alt="DPU_ris drawio (2)" src="https://github.com/user-attachments/assets/1976499a-8ff2-4647-9fb8-17bfe36dccd4" />
 
+PODROBEN OPIS VSEH PRIMEROV UPORABE
+
+<img width="653" height="394" alt="Screenshot 2025-11-23 at 19 35 49" src="https://github.com/user-attachments/assets/8be65407-adf1-4fc3-ae33-b7457fdae83e" />
+
+
+<img width="649" height="322" alt="Screenshot 2025-11-23 at 19 35 53" src="https://github.com/user-attachments/assets/37962798-86d5-4c33-8ab9-4754d70faa4a" />
+
+
+<img width="647" height="283" alt="Screenshot 2025-11-23 at 19 35 10" src="https://github.com/user-attachments/assets/f82efbd0-a6ba-4397-9c95-ed6983129e41" />
+
+
+<img width="655" height="291" alt="Screenshot 2025-11-23 at 19 35 14" src="https://github.com/user-attachments/assets/c00bdc48-b171-4af5-aa1c-248af594fab4" />
+
+
+<img width="656" height="294" alt="Screenshot 2025-11-23 at 19 35 44" src="https://github.com/user-attachments/assets/714f8fe7-fca7-4f6e-bce1-c7805a6cb254" />
+
+
+<img width="658" height="321" alt="Screenshot 2025-11-23 at 19 35 56" src="https://github.com/user-attachments/assets/c7ef718f-f267-4a9f-bef9-8ab99e7bfa30" />
+
+
+
 
 
