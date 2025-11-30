@@ -179,4 +179,6 @@ PODROBEN OPIS VSEH PRIMEROV UPORABE
 <img width="639" height="444" alt="Screenshot 2025-11-23 204953" src="https://github.com/user-attachments/assets/3dd7c21b-c2d6-427d-822b-a5ac964f5e92" />
 
 
+RAZREDNI DIAGRAM
 
+<img width="622" height="589" alt="razredni_diagram_ris drawio (1)" src="https://github.com/user-attachments/assets/7b6ee5cf-2ad9-4c71-a346-100dbc3f2efc" />
