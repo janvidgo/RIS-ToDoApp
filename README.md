@@ -182,3 +182,100 @@ PODROBEN OPIS VSEH PRIMEROV UPORABE
 RAZREDNI DIAGRAM
 
 <img width="622" height="589" alt="razredni_diagram_ris drawio (1)" src="https://github.com/user-attachments/assets/7b6ee5cf-2ad9-4c71-a346-100dbc3f2efc" />
+
+RAZLAGA RAZREDNEGA DIAGRAMA
+
+1. Razred Admin
+
+Vloga:
+Predstavlja skrbnika sistema, ki ima višje pravice kot običajni uporabnik.
+Upravljalni razred, namenjen administraciji uporabnikov.
+
+Namen:
+Omogoča dodajanje novih uporabnikov.
+Omogoča urejanje in brisanje obstoječih uporabnikov.
+
+Ključne metode:
+dodajUporabnika(): Ustvari novega uporabnika in ga zapiše v sistem.
+izbrisiUporabnika(): Odstrani izbranega uporabnika.
+urediUporabnika(): Posodobi podatke o uporabniku.
+
+
+2. Razred Uporabnik
+
+Vloga:
+Predstavlja običajnega uporabnika aplikacije.
+Uporabnik lahko ustvarja, ureja in briše svoja opravila.
+
+Namen:
+Omogoča upravljanje s svojimi opravili.
+Shrani njegove osnovne podatke (e-mail, geslo, uporabniško ime).
+
+Ključne metode:
+ustvariOpravilo(): Uporabnik ustvari novo opravilo.
+urediOpravilo(): Uporabnik spremeni lastnosti izbranega opravila.
+izbrisiOpravilo(opravilo): Uporabnik odstrani opravilo iz svojega seznama.
+
+
+3. Razred Opravilo
+
+Vloga:
+Predstavlja posamezno nalogo, ki jo uporabnik želi izvesti.
+Povezana je z enim opomnikom (lahko ga ima ali pa ne).
+
+Namen:
+Hrani podatke o nalogi: ime, opis, napredek, rok izvedbe.
+Omogoča sledenje napredku in dodajanje opomnikov.
+
+Ključne metode:
+posodobiNapredek(napredek): Nastavi nov napredek opravila (npr. 40%, 50%...).
+ustvariOpomnik(opomnik): Poveže opravilo z opomnikom.
+
+
+4. Razred Opomnik
+
+Vloga:
+Predstavlja opomnik za posamezno opravilo.
+Lahko vsebuje opombo in datum, ko naj uporabnik prejme opomnik.
+
+Namen:
+Omogoča uporabniku, da se spomni na svoje naloge.
+Povezan je 1–1 z enim opravilom (lahko tudi 0, pomeni da opravilo nima opomnika).
+
+Ključne lastnosti (ni metod):
+datum: Kdaj opomniti uporabnika.
+opomba: Kratek opis ali opomba.
+
+
+5. Razred TaskRepository
+
+Vloga:
+Služi kot podatkovni sloj (ang. Repository).
+Zadolžen je za iskanje in branje opravil iz baze podatkov ali pomnilnika.
+
+Namen:
+Ločuje logiko iskanja podatkov od uporabniškega in poslovnega dela aplikacije.
+Omogoča organizirano pridobivanje opravil.
+
+Ključne metode:
+findByName(): Poišče opravila glede na ime.
+findByProgress(): Poišče opravila z določenim napredkom.
+findByNameAndProgress(): Naprednejše filtriranje.
+getAll(): Vrne seznam vseh opravil.
+
+
+6. Razred ReportService
+
+Vloga:
+Zadolžen za ustvarjanje poročil in izvoz podatkov.
+Pripada poslovni logiki, ki dela z gotovimi seznami opravil.
+
+Namen:
+Uporabniku ali administratorju omogoča pregled nad opravili.
+Pretvarja podatke v uporabne formate (PDF, CSV).
+
+Ključne metode:
+generirajTedenskiPregled(): Ustvari tedensko poročilo (statistiko, povzetke).
+izvozCSV(seznamOpravil): Izvozi opravila v CSV datoteko.
+izvozPDF(seznamOpravil): Ustvari PDF poročilo opravil.
+
