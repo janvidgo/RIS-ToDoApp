@@ -279,3 +279,8 @@ generirajTedenskiPregled(): Ustvari tedensko poročilo (statistiko, povzetke).
 izvozCSV(seznamOpravil): Izvozi opravila v CSV datoteko.
 izvozPDF(seznamOpravil): Ustvari PDF poročilo opravil.
 
+
+Nova funkcionalnost 
+Kot dodatno funkcionalnost smo implementirali izvoz opravil v pdf in csv datoteko. Nova funkcionalnost deluje tako, da uporabnik klikne na gumb “Izvozi vidne naloge” nato se mu odpre modalno okno, kjer lahko izbere ali bo izvozil v pdf ali v csv datoteko. Po kliku na “PDF” se prenese uporabniku na računalniku PDF datoteka naloge.pdf. Po kliku “CSV” pa se prenese uporabniku na računalnik CSV datoteka naloge.csv. 
+
+
