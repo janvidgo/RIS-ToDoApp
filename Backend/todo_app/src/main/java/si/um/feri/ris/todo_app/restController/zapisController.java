@@ -1,7 +1,10 @@
 package si.um.feri.ris.todo_app.restController;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import jakarta.validation.Valid;
 import si.um.feri.ris.todo_app.repository.ZapisRepository;
 import si.um.feri.ris.todo_app.vao.Zapis;
 
@@ -21,8 +24,9 @@ public class zapisController {
     }
 
     @PostMapping
-    public Zapis createZapis(@RequestBody Zapis zapis) {
-        return zapisRepository.save(zapis);
+    public ResponseEntity<Zapis> createZapis(@Valid @RequestBody Zapis zapis) {
+        Zapis saved = zapisRepository.save(zapis);
+    return ResponseEntity.ok(saved);
     }
 
     @DeleteMapping("/{id}")

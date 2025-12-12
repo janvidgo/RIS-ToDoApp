@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import jakarta.validation.constraints.NotBlank;
+
 @Getter
 @Setter
 @Data
@@ -17,6 +19,7 @@ public class Zapis {
     private int zapisID;
 
     @Column(name = "zapis")
+    @NotBlank(message = "Ime zapisa ne sme biti prazno")
     private String zapis;
 
     @Column(name="opis")
