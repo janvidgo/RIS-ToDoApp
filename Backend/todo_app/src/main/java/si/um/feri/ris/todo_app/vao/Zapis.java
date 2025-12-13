@@ -1,5 +1,6 @@
 package si.um.feri.ris.todo_app.vao;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class Zapis {
     private String opis;
 
     @Column(name = "progress")
+    @JsonProperty("progress")
     private int situacija;
 
     public Zapis() {}
@@ -44,6 +46,10 @@ public class Zapis {
 
     public int getZapisID() {
         return zapisID;
+    }
+
+    public void setZapisID(int zapisID) {
+        this.zapisID = zapisID;
     }
 
     public void setZapis(String zapis) {

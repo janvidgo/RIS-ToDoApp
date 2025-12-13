@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cce4e2e-2a61-4868-ad25-038a0e708873" name="Changes" comment="" />
+    <list default="true" id="9cce4e2e-2a61-4868-ad25-038a0e708873" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerDeleteTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerUpdateProgressTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_app/src/main/java/si/um/feri/ris/todo_app/restController/zapisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo_app/src/main/java/si/um/feri/ris/todo_app/restController/zapisController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_app/src/main/java/si/um/feri/ris/todo_app/vao/Zapis.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo_app/src/main/java/si/um/feri/ris/todo_app/vao/Zapis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../porocilo_testiranja.md" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,23 +26,33 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="34QSr3nUv2ntn8lwkzYJKYZbjK3" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.ZapisControllerDeleteTest.executor": "Run",
+    "JUnit.ZapisControllerFilterTest.executor": "Run",
+    "JUnit.ZapisControllerUpdateProgressTest.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.TodoAppApplication.executor": "Run",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/janvi/Documents/FERI/3.semester/Razvoj informacijskih sistemov/RIS_SKUPINA/Backend",
     "node.js.detected.package.eslint": "true",
@@ -56,6 +73,51 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.TodoAppApplication">
+    <configuration name="ZapisControllerDeleteTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="todo_app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="si.um.feri.ris.todo_app.restController.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="si.um.feri.ris.todo_app.restController" />
+      <option name="MAIN_CLASS_NAME" value="si.um.feri.ris.todo_app.restController.ZapisControllerDeleteTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ZapisControllerFilterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="todo_app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="si.um.feri.ris.todo_app.restController.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="si.um.feri.ris.todo_app.restController" />
+      <option name="MAIN_CLASS_NAME" value="si.um.feri.ris.todo_app.restController.ZapisControllerFilterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ZapisControllerUpdateProgressTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="todo_app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="si.um.feri.ris.todo_app.restController.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="si.um.feri.ris.todo_app.restController" />
+      <option name="MAIN_CLASS_NAME" value="si.um.feri.ris.todo_app.restController.ZapisControllerUpdateProgressTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TodoAppApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="todo_app" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="si.um.feri.ris.todo_app.TodoAppApplication" />
@@ -70,6 +132,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ZapisControllerDeleteTest" />
+        <item itemvalue="JUnit.ZapisControllerFilterTest" />
+        <item itemvalue="JUnit.ZapisControllerUpdateProgressTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -97,6 +166,10 @@
       <workItem from="1762160754376" duration="1607000" />
       <workItem from="1762528030093" duration="2001000" />
       <workItem from="1763741450432" duration="94000" />
+      <workItem from="1763743903323" duration="697000" />
+      <workItem from="1763917544523" duration="644000" />
+      <workItem from="1765184607307" duration="789000" />
+      <workItem from="1765625525766" duration="3486000" />
     </task>
     <servers />
   </component>

@@ -36,9 +36,25 @@ Zakaj je pomemben:
 
 Preverja robustnost backend-a, da se obravnavajo napake in da uporabnik ne more spreminjati zapisov, ki ne obstajajo.
 
+TEST deleteZapis()
+
+Ta test preverja, ali je mogoče izbrisati obstoječi zapis v aplikaciji. Test vključuje dva scenarija:
+
+**Pozitivni scenarij**: Brisanje obstoječega zapisa z veljavnim ID-jem – preveri, da je zapis dejansko izbrisan iz baze.
+
+**Negativni scenarij**: Poskus brisanja neobstoječega zapisa (ID, ki ne obstaja v bazi) – preveri, da aplikacija ne vrne napake in da zapis ostane neizbrisan, ker zapis ne obstaja.
+
+Zakaj je pomemben:
+
+Preverja, da sistem omogoča pravilno brisanje zapisov in da ob neobstoječih zapisih deluje brez napak. Zagotavlja, da uporabnik ne more izbrisati zapisa, ki ne obstaja, ter da sistem omogoča robustno obvladovanje napak, kar preprečuje neželeno vedenje aplikacije.
+
 
 ANALIZA USPEŠNOSTI TESTOV
 
 Pri prvem testu je negativni scenarij "padel", saj aplikacija sprva ni validirala praznega imena. To smo popravili tako, da smo V entiteti Zapis je dodali @NotBlank na polje zapis, s tem preverjamo, da vrednost ni prazna oziroma null. S te se preprečuje shranjevanje zapisov brez imena, kar pomaga pri tem, da so podatki v bazi vedno smiselni in popolni.
 
 Pri drugem testu, nismo rabili ničesar popravljati, saj sta se oba scenarija uspešno izvedla.
+
+Pri tretjem testu, nismo rabili ničesar popravljati, saj sta se oba scenarija uspešno izvedla.
+
+Pri četrtem testu, nismo rabili ničesar popravljati, saj sta se oba scenarija uspešno izvedla.

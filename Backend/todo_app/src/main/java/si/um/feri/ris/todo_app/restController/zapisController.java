@@ -1,10 +1,12 @@
 package si.um.feri.ris.todo_app.restController;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
+import org.springframework.web.server.ResponseStatusException;
 import si.um.feri.ris.todo_app.repository.ZapisRepository;
 import si.um.feri.ris.todo_app.vao.Zapis;
 
@@ -37,7 +39,7 @@ public class zapisController {
     @PutMapping("/{id}")
     public void updateProgress(@PathVariable("id") int id, @RequestBody Zapis posodobljenZapis) {
 
-        Zapis zapis = zapisRepository.findById(id).get();
+        Zapis zapis = zapisRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Zapis not found"));
 
         zapis.setSituacija(posodobljenZapis.getSituacija());
 
