@@ -1,11 +1,19 @@
 OPIS TESTOV
 
-TEST CreateZapis()
+TEST CreateZapis() 
+
 Ta test preverja, ali je mogoče dodati nov zapis v aplikacijo. Test vključuje dva scenarija:
+
+
 **Pozitivni scenarij**: Dodajanje zapisa z veljavnimi podatki (ime, opis, napredek).
+
+
 **Negativni scenarij**: Dodajanje zapisa, ko je ime zapisa prazno, kar mora aplikacija zavrniti.
 
+
 Zakaj je pomemben:
+
+
 Zagotavlja, da osnovna funkcionalnost dodajanja zapisov deluje in da sistem pravilno validira vhodne podatke, kar preprečuje shranjevanje nepopolnih ali napačnih zapisov.
 
 TEST filterZapis()
