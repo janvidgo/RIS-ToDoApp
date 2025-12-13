@@ -4,32 +4,36 @@ TEST CreateZapis()
 
 Ta test preverja, ali je mogoče dodati nov zapis v aplikacijo. Test vključuje dva scenarija:
 
-
 **Pozitivni scenarij**: Dodajanje zapisa z veljavnimi podatki (ime, opis, napredek).
-
 
 **Negativni scenarij**: Dodajanje zapisa, ko je ime zapisa prazno, kar mora aplikacija zavrniti.
 
-
 Zakaj je pomemben:
-
 
 Zagotavlja, da osnovna funkcionalnost dodajanja zapisov deluje in da sistem pravilno validira vhodne podatke, kar preprečuje shranjevanje nepopolnih ali napačnih zapisov.
 
 TEST filterZapis()
+
 Ta test preverja, ali REST endpoint za filtriranje zapisov pravilno vrača rezultate glede na podane iskalne kriterije. Test vključuje dva scenarija:
+
 **Pozitivni scenarij** (FilterZapis_Found): Filtriranje zapisov po imenu, ki obstaja v sistemu. Preveri, da backend: vrne uspešen odgovor (200 OK), vrne vsaj en zapis in da se ime vrnjenega zapisa ujema z iskanim kriterijem.
+
 **Negativni scenarij** (FilterZapis_NotFound): Filtriranje zapisov po imenu, ki ne obstaja v sistemu. Preveri, da backend: vrne uspešen odgovor (200 OK), vrne prazno listo, brez napak ali nepravilnih podatkov.
 
 Zakaj je pomemben:
+
 Zagotavlja pravilno delovanje funkcionalnosti filtriranja, ki jo uporablja frontend in preverja, da aplikacija pravilno obravnava primere, ko ni zadetkov, in se ne sesuje ali vrne napačnega statusa.
 
 TEST updateProgress()
+
 Ta test preverja, ali je mogoče posodobiti napredek obstoječega zapisa. Test vključuje dva scenarija:
+
 **Pozitivni scenarij**: Posodobitev napredka za obstoječi zapis – preveri, da se vrednost dejansko spremeni.
+
 **Negativni scenarij**: Poskus posodobitve napredka neobstoječega zapisa – preveri, da aplikacija vrne ustrezno napako (npr. 404 Not Found).
 
 Zakaj je pomemben:
+
 Preverja robustnost backend-a, da se obravnavajo napake in da uporabnik ne more spreminjati zapisov, ki ne obstajajo.
 
 
