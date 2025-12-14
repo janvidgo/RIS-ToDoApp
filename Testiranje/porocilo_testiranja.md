@@ -49,6 +49,34 @@ Zakaj je pomemben:
 Preverja, da sistem omogoča pravilno brisanje zapisov in da ob neobstoječih zapisih deluje brez napak. Zagotavlja, da uporabnik ne more izbrisati zapisa, ki ne obstaja, ter da sistem omogoča robustno obvladovanje napak, kar preprečuje neželeno vedenje aplikacije.
 
 
+TEST updateZapis()
+
+Ta test preverja, ali je mogoče uspešno posodobiti obstoječi zapis v aplikaciji.
+
+**Pozitivni scenarij**:
+Posodobitev zapisa za obstoječi ID. Test preveri, da se vrednosti polj zapis in opis v bazi dejansko spremenijo na nove vrednosti, medtem ko ostali podatki (npr. napredek) ostanejo nespremenjeni.
+
+**Negativni scenarij**:
+Poskus posodobitve zapisa z ID-jem, ki ne obstaja v bazi. Test preveri, da aplikacija ob takem poskusu pravilno obravnava napako in ne spremeni nobenih podatkov.
+
+Zakaj je pomemben:
+
+Test zagotavlja, da aplikacija omogoča urejanje obstoječih zapisov in da se spremembe pravilno shranijo v bazo. Hkrati preverja robustnost sistema, saj preprečuje posodabljanje zapisov, ki ne obstajajo, kar zmanjšuje možnost napak in nekonsistentnih podatkov.
+
+TEST getZapis()
+
+Ta test preverja delovanje REST endpointa, ki vrača seznam vseh zapisov v sistemu.
+
+**Pozitivni scenarij**:
+V bazi obstajajo zapisi. Test preveri, da metoda vrne seznam zapisov, da seznam ni prazen ter da število vrnjenih zapisov ustreza številu zapisov, shranjenih v bazi.
+
+**Negativni scenarij**:
+V bazi ni nobenega zapisa. Test preveri, da metoda vrne prazen seznam in da se aplikacija pri tem ne sesuje ali vrne napačnih podatkov.
+
+Zakaj je pomemben:
+
+Test zagotavlja, da aplikacija pravilno vrača podatke za prikaz na frontendu ter da zna pravilno obravnavati tudi primere, ko v sistemu ni podatkov.
+
 ANALIZA USPEŠNOSTI TESTOV
 
 Pri prvem testu je negativni scenarij "padel", saj aplikacija sprva ni validirala praznega imena. To smo popravili tako, da smo V entiteti Zapis je dodali @NotBlank na polje zapis, s tem preverjamo, da vrednost ni prazna oziroma null. S te se preprečuje shranjevanje zapisov brez imena, kar pomaga pri tem, da so podatki v bazi vedno smiselni in popolni.
@@ -58,3 +86,7 @@ Pri drugem testu, nismo rabili ničesar popravljati, saj sta se oba scenarija us
 Pri tretjem testu, nismo rabili ničesar popravljati, saj sta se oba scenarija uspešno izvedla.
 
 Pri četrtem testu, nismo rabili ničesar popravljati, saj sta se oba scenarija uspešno izvedla.
+
+Pri petem testu sta se oba scenarija uspešno izvedla.
+
+Pri šestem testu sta se pravtako oba scenarija uspešno izvedla.
