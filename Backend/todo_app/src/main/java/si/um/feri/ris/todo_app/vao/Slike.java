@@ -1,5 +1,6 @@
 package si.um.feri.ris.todo_app.vao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -22,8 +23,27 @@ public class Slike {
 
     @ManyToOne
     @JoinColumn(name = "ZapisTK")
+    @JsonIgnore
     private Zapis zapis;
 
     public Slike() {}
+
+    public void setSlika(String slika) {
+        this.slika = slika;
+    }
+
+    public void setZapis(Zapis zapis) {
+        this.zapis = zapis;
+    }
+
+    public int getSlikeID() {
+        return slikeID;
+    }
+
+    public String getSlika() {
+        return slika;
+    }
+
+    public record SlikeDTO(int slikeID, String slika) {}
 }
 

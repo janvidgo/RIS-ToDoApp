@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface SlikeRepository extends JpaRepository<Slike, Integer>{
 
-    List<Slike> findByZapis_ZapisID(int zapisID);
+    List<Slike> findByZapis_zapisID(int zapisID);
 }
