@@ -268,9 +268,223 @@ async function loadNotes() {
     document.getElementById('notesList').innerHTML = '<p class="text-danger">Napaka pri nalaganju zapisov.</p>';
   }
 }
+// ---------- prikaz filtriranih rezultatov ----------
+function prikaziNaloge(naloge) {
+  const list = document.getElementById("notesList");
+  list.innerHTML = "";
+  if (!naloge || naloge.length === 0) {
+    list.innerHTML = '<p class="text-muted">Ni zadetkov za izbrane filtre.</p>';
+    return;
+  }
+  naloge.forEach(note => {
+    list.appendChild(createNoteCard(note));
+  });
+}
 
-// ---------- filtriranje, dodajanje, izvoz (ostalo enako kot prej) ----------
-// Tukaj ohrani vse preostale funkcije iz tvojega JS (filter, reset, dodajanje, izvoz CSV/PDF)...
+// ---------- obdelava filtra ----------
+const filtrirajForm = document.getElementById("filterForm");
+if (filtrirajForm) {
+  filtrirajForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const zapis = document.getElementById("filterZapis").value.trim();
+    const min = document.getElementById("progressMin").value.trim();
+    const max = document.getElementById("progressMax").value.trim();
+
+    let params = [];
+    if (zapis) params.push(`zapis=${encodeURIComponent(zapis)}`);
+    if (min) params.push(`min=${min}`);
+    if (max) params.push(`max=${max}`);
+
+    if (params.length === 0) {
+      Swal.fire("Napaka", "Vnesi vsaj en filter (ime ali napredek).", "warning");
+      return;
+    }
+
+    if (min && max && parseInt(min) > parseInt(max)) {
+      Swal.fire("Napaka", "Minimalni napredek ne sme biti večji od maksimalnega.", "warning");
+      return;
+    }
+
+    if (!zapis && (!min || !max)) {
+      Swal.fire("Napaka", "Če ne filtriraš po imenu, moraš vnesti oba napredka (min in max).", "warning");
+      return;
+    }
+
+    if (zapis && ((min && !max) || (!min && max))) {
+      Swal.fire("Napaka", "Če filtriraš po imenu in napredku, moraš vnesti oba napredka.", "warning");
+      return;
+    }
+
+    const url = `http://localhost:8080/zapis/filter?${params.join("&")}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      prikaziNaloge(data);
+    } catch (error) {
+      console.error("Napaka pri filtriranju:", error);
+      Swal.fire("Napaka", "Pri filtriranju je prišlo do napake.", "error");
+    }
+  });
+}
+
+// ---------- reset filter ----------
+const resetButton = document.getElementById("resetFilters");
+if (resetButton) {
+  resetButton.addEventListener("click", () => {
+    const fz = document.getElementById("filterZapis");
+    const fm = document.getElementById("progressMin");
+    const fx = document.getElementById("progressMax");
+
+    if (fz) fz.value = "";
+    if (fm) fm.value = "";
+    if (fx) fx.value = "";
+
+    loadNotes();
+  });
+}
+
+// ---------- dodajanje novega zapisa ----------
+const addNoteForm = document.getElementById("addNoteForm");
+if (addNoteForm) {
+  addNoteForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const noteName = document.getElementById("noteName").value.trim();
+    const noteOpis = document.getElementById("noteOpis").value.trim();
+
+    if (!noteName) {
+      Swal.fire("Napaka", "Vnesi ime naloge!", "warning");
+      return;
+    }
+    if (!noteOpis) {
+      Swal.fire("Napaka", "Vnesi opis naloge!", "warning");
+      return;
+    }
+
+    const newNote = {
+      zapis: noteName,
+      opis: noteOpis,
+      situacija: 0
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/zapis", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newNote)
+      });
+
+      if (response.ok) {
+        document.getElementById("noteName").value = "";
+        document.getElementById("noteOpis").value = "";
+        await Swal.fire({
+          icon: 'success',
+          title: 'Dodano!',
+          text: 'Naloga je bila uspešno dodana.',
+          timer: 1200,
+          showConfirmButton: false
+        });
+        loadNotes();
+      } else {
+        const errorText = await response.text();
+        Swal.fire('Napaka', errorText || 'Pri dodajanju je prišlo do napake.', 'error');
+      }
+    } catch (err) {
+      console.error("Napaka pri dodajanju:", err);
+      Swal.fire('Napaka', 'Ni povezave s strežnikom.', 'error');
+    }
+  });
+}
+
+// ---------- odpre modal za izvoz ----------
+const exportBtn = document.getElementById("exportBtn");
+if (exportBtn) {
+  exportBtn.addEventListener("click", () => {
+    const modal = new bootstrap.Modal(document.getElementById("exportModal"));
+    modal.show();
+  });
+}
+
+// ---------- pridobi vidne zapise za izvoz ----------
+function getVisibleNotes() {
+  return Array.from(document.querySelectorAll(".note-card")).map(card => {
+    const title = card.querySelector(".note-title").innerText;
+    const opis = card.querySelector(".note-opis").innerText;
+    const progressBar = card.querySelector(".progress-bar");
+    const napredek = progressBar ? progressBar.style.width : "0%";
+
+    return { ime: title, opis: opis, napredek: napredek };
+  });
+}
+
+// ---------- izvozi kot CSV ----------
+function exportCSV() {
+  const notes = getVisibleNotes();
+  if (notes.length === 0) {
+    Swal.fire("Ni rezultatov", "Ni vidnih nalog za izvoz.", "warning");
+    return;
+  }
+
+  let csv = "Ime,Opis,Napredek\n";
+  notes.forEach(n => {
+    csv += `"${n.ime}","${n.opis}","${n.napredek}"\n`;
+  });
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "naloge.csv";
+  link.click();
+}
+
+// ---------- izvozi kot PDF ----------
+async function exportPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const notes = getVisibleNotes();
+  if (notes.length === 0) {
+    Swal.fire("Ni rezultatov", "Ni vidnih nalog za izvoz.", "warning");
+    return;
+  }
+
+  let y = 20;
+  doc.setFontSize(16);
+  doc.text("Izvoz vidnih nalog", 10, 10);
+
+  notes.forEach((n, index) => {
+    doc.setFontSize(12);
+    doc.text(`Naloga ${index + 1}:`, 10, y);
+    y += 8;
+    doc.text(`Ime: ${n.ime}`, 10, y);
+    y += 6;
+    doc.text(`Opis: ${n.opis}`, 10, y);
+    y += 6;
+    doc.text(`Napredek: ${n.napredek}`, 10, y);
+    y += 12;
+
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+  });
+
+  doc.save("naloge.pdf");
+}
+
+// ---------- event listenerji za izvoz ----------
+const exportCsvBtn = document.getElementById("exportCsv");
+if (exportCsvBtn) {
+  exportCsvBtn.addEventListener("click", exportCSV);
+}
+
+const exportPdfBtn = document.getElementById("exportPdf");
+if (exportPdfBtn) {
+  exportPdfBtn.addEventListener("click", exportPDF);
+}
 
 // ---------- končni klic ----------
 loadNotes();
+
