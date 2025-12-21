@@ -23,3 +23,25 @@
 .progresss {
   cursor: pointer;
 }
+
+.note-image-wrapper {
+  text-align: center;
+}
+
+.note-image {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+.image-placeholder {
+  height: 180px;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #999;
+}
