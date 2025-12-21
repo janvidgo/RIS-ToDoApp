@@ -16,6 +16,7 @@ import jakarta.validation.constraints.NotBlank;
 public class Zapis {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "zapisID")
     private int zapisID;
 
@@ -27,7 +28,7 @@ public class Zapis {
     private String opis;
 
     @Column(name = "progress")
-    @JsonProperty("progress")
+    //@JsonProperty("progress")
     private int situacija;
 
     public Zapis() {}
