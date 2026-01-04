@@ -1,11 +1,13 @@
 package si.um.feri.ris.todo_app.restController;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+import si.um.feri.ris.todo_app.repository.SlikeRepository;
 import si.um.feri.ris.todo_app.repository.ZapisRepository;
 import si.um.feri.ris.todo_app.vao.Zapis;
 
@@ -23,14 +25,17 @@ public class ZapisControllerUpdateZapisTest {
     @Autowired
     private zapisController zapisController;
 
+    @Autowired
+    private SlikeRepository slikeRepository;
+
     private Zapis testZapis;
 
     @BeforeEach
     public void setup() {
+        slikeRepository.deleteAll();
         zapisRepository.deleteAll();
 
         testZapis = new Zapis();
-        testZapis.setZapisID(1);
         testZapis.setZapis("Stari zapis");
         testZapis.setOpis("Star opis");
         testZapis.setSituacija(10);
@@ -68,6 +73,12 @@ public class ZapisControllerUpdateZapisTest {
         assertThrows(NoSuchElementException.class, () -> {
             zapisController.updateZapis(999, update);
         });
+    }
+
+    @AfterEach
+    void cleanup() {
+        slikeRepository.deleteAll();
+        zapisRepository.deleteAll();
     }
 
 }

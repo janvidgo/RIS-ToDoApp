@@ -1,11 +1,13 @@
 package si.um.feri.ris.todo_app.restController;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+import si.um.feri.ris.todo_app.repository.SlikeRepository;
 import si.um.feri.ris.todo_app.repository.ZapisRepository;
 import si.um.feri.ris.todo_app.vao.Zapis;
 
@@ -21,15 +23,17 @@ public class ZapisControllerDeleteTest {
     @Autowired
     private zapisController zapisController;
 
+    @Autowired
+    private SlikeRepository slikeRepository;
+
     private Zapis testZapis;
 
     @BeforeEach
     public void setup() {
-        // Priprava testnega zapisa
+        slikeRepository.deleteAll();
         zapisRepository.deleteAll();
 
         testZapis = new Zapis();
-        testZapis.setZapisID(20);
         testZapis.setZapis("Testni zapis");
         testZapis.setOpis("Opis testnega zapisa");
         testZapis.setSituacija(50);
@@ -59,5 +63,11 @@ public class ZapisControllerDeleteTest {
             // Način, kako je deleteById implementiran v Spring Data JPA – ne vrže izjeme, če zapis ne obstaja
             zapisController.deleteZapis(999);
         }, "Brisanje neobstoječega zapisa ne sme povzročiti napake");
+    }
+
+    @AfterEach
+    void cleanup() {
+        slikeRepository.deleteAll();
+        zapisRepository.deleteAll();
     }
 }

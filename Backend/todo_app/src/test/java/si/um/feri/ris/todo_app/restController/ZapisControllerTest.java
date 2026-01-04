@@ -1,5 +1,6 @@
 package si.um.feri.ris.todo_app.restController;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,6 +9,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import si.um.feri.ris.todo_app.repository.SlikeRepository;
+import si.um.feri.ris.todo_app.repository.ZapisRepository;
 import si.um.feri.ris.todo_app.vao.Zapis;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,8 +21,17 @@ public class ZapisControllerTest {
     @Autowired
     private TestRestTemplate restTemplate; // Springov REST klient za testiranje
 
+    @Autowired
+    private ZapisRepository zapisRepository;
+
+    @Autowired
+    private SlikeRepository slikeRepository;
+
     @Test
 public void testCreateZapis() {
+        slikeRepository.deleteAll();
+        zapisRepository.deleteAll();
+
     Zapis validZapis = new Zapis();
         validZapis.setZapis("Test naloga");
         validZapis.setOpis("Opis test naloge");
@@ -42,6 +54,12 @@ public void testCreateZapis() {
 
         // Preverimo, da backend zavrne zahtevek z 400 Bad Request
         assertThat(invalidResponse.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+    }
+
+    @AfterEach
+    void cleanup() {
+        slikeRepository.deleteAll();
+        zapisRepository.deleteAll();
     }
     
 }

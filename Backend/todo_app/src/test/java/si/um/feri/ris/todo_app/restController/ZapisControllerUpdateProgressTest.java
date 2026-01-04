@@ -1,11 +1,13 @@
 package si.um.feri.ris.todo_app.restController;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+import si.um.feri.ris.todo_app.repository.SlikeRepository;
 import si.um.feri.ris.todo_app.repository.ZapisRepository;
 import si.um.feri.ris.todo_app.vao.Zapis;
 
@@ -21,15 +23,17 @@ public class ZapisControllerUpdateProgressTest {
     @Autowired
     private zapisController zapisController;
 
+    @Autowired
+    private SlikeRepository slikeRepository;
+
     private Zapis testZapis;
 
     @BeforeEach
     public void setup() {
-        // Priprava testnega zapisa
+        slikeRepository.deleteAll();
         zapisRepository.deleteAll();
 
         testZapis = new Zapis();
-        testZapis.setZapisID(15);
         testZapis.setZapis("Začetni zapis");
         testZapis.setOpis("Opis začetnega zapisa");
         testZapis.setSituacija(10); // začetni napredek
@@ -67,5 +71,11 @@ public class ZapisControllerUpdateProgressTest {
 
         assertEquals("404 NOT_FOUND \"Zapis not found\"", exception.getMessage(),
                 "Pri neobstoječem zapisu mora biti vržen 404 Not Found");
+    }
+
+    @AfterEach
+    void cleanup() {
+        slikeRepository.deleteAll();
+        zapisRepository.deleteAll();
     }
 }

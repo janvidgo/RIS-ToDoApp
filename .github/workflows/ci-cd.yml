@@ -23,7 +23,7 @@ jobs:
       
       - name: Zgradi backend z Mavenom
         run: |
-          cd Backend
+          cd Backend/todo_app
           mvn clean install -DskipTests
 
   # JOB 2: Grajenje frontenda (Node.js + Express)
@@ -85,7 +85,7 @@ jobs:
       
       - name: Zaženi teste z Mavenom
         run: |
-          cd Backend
+          cd Backend/todo_app
           mvn test
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/TO_DO

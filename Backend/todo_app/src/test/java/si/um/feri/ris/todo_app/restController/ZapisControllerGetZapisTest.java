@@ -1,10 +1,12 @@
 package si.um.feri.ris.todo_app.restController;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+import si.um.feri.ris.todo_app.repository.SlikeRepository;
 import si.um.feri.ris.todo_app.repository.ZapisRepository;
 import si.um.feri.ris.todo_app.vao.Zapis;
 
@@ -22,18 +24,20 @@ public class ZapisControllerGetZapisTest {
     @Autowired
     private zapisController zapisController;
 
+    @Autowired
+    private SlikeRepository slikeRepository;
+
     @BeforeEach
     public void setup() {
+        slikeRepository.deleteAll();
         zapisRepository.deleteAll();
 
         Zapis z1 = new Zapis();
-        z1.setZapisID(1);
         z1.setZapis("Prvi zapis");
         z1.setOpis("Opis prvega");
         z1.setSituacija(20);
 
         Zapis z2 = new Zapis();
-        z2.setZapisID(2);
         z2.setZapis("Drugi zapis");
         z2.setOpis("Opis drugega");
         z2.setSituacija(50);
@@ -67,6 +71,12 @@ public class ZapisControllerGetZapisTest {
 
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Seznam mora biti prazen");
+    }
+
+    @AfterEach
+    void cleanup() {
+        slikeRepository.deleteAll();
+        zapisRepository.deleteAll();
     }
 }
 
