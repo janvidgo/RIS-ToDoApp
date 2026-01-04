@@ -5,13 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9cce4e2e-2a61-4868-ad25-038a0e708873" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.github/workflows/ci-cd.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/ci-cd.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerDeleteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerDeleteTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerFilterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerFilterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerGetZapisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerGetZapisTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerUpdateProgressTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerUpdateProgressTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerUpdateZapisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo_app/src/test/java/si/um/feri/ris/todo_app/restController/ZapisControllerUpdateZapisTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -215,7 +208,7 @@
       <workItem from="1766316454071" duration="515000" />
       <workItem from="1766316986801" duration="2045000" />
       <workItem from="1766320798262" duration="557000" />
-      <workItem from="1767559533276" duration="2523000" />
+      <workItem from="1767559533276" duration="2913000" />
     </task>
     <servers />
   </component>

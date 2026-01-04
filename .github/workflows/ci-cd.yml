@@ -71,15 +71,15 @@ jobs:
       - name: Zaženi MySQL in ustvari bazo
         run: |
           sudo systemctl start mysql.service
-          mysql -e 'CREATE DATABASE IF NOT EXISTS TO_DO;' -uroot -proot
-          mysql -e 'CREATE USER IF NOT EXISTS "root"@"localhost" IDENTIFIED BY "GesloZaEkipo123";' -uroot -proot
-          mysql -e 'GRANT ALL PRIVILEGES ON TO_DO.* TO "root"@"localhost";' -uroot -proot
+          mysql -e 'CREATE DATABASE IF NOT EXISTS TODO;' -uroot -proot
+          mysql -e 'CREATE USER IF NOT EXISTS "ekipa"@"localhost" IDENTIFIED BY "GesloZaEkipo123";' -uroot -proot
+          mysql -e 'GRANT ALL PRIVILEGES ON TODO.* TO "ekipa"@"localhost";' -uroot -proot
           mysql -e 'FLUSH PRIVILEGES;' -uroot -proot
       
       - name: Uvozi SQL shemo (če obstaja)
         run: |
-          if [ -f "TO_DO mysql.sql" ]; then
-            mysql -uroot -pGesloZaEkipo123 TO_DO < "TO_DO mysql.sql"
+          if [ -f "TODO mysql.sql" ]; then
+            mysql -uekipa -pGesloZaEkipo123 TODO < "TODO mysql.sql"
           fi
         continue-on-error: true
       
@@ -88,6 +88,6 @@ jobs:
           cd Backend/todo_app
           mvn test
         env:
-          SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/TO_DO
-          SPRING_DATASOURCE_USERNAME: root
+          SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/TODO
+          SPRING_DATASOURCE_USERNAME: ekipa
           SPRING_DATASOURCE_PASSWORD: GesloZaEkipo123
