@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @Data
@@ -30,6 +32,9 @@ public class Zapis {
     @Column(name = "progress")
     //@JsonProperty("progress")
     private int situacija;
+
+    @Column(name = "rokNaloge")
+    private Date datum;
 
     public Zapis() {}
 

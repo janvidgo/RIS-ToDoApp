@@ -24,7 +24,3 @@ CREATE TABLE IF NOT EXISTS Slike (
   PRIMARY KEY (SlikeID),
   FOREIGN KEY (ZapisTK) REFERENCES Zapis(ZapisID)
   );
-  
-  INSERT INTO Zapis(Zapis,Opis,Progress) VALUES ("ris", "naloga za ris", 10);
-
-SELECT * FROM Slike;
