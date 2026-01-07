@@ -485,6 +485,74 @@ if (exportPdfBtn) {
   exportPdfBtn.addEventListener("click", exportPDF);
 }
 
+// Google Calendar variables
+let googleToken = null;
+let googleUser = null;
+
+const CLIENT_ID = 'TVÓJ_CLIENT_ID_IZ_GOOGLE_CLOUDA'; // sem vstav svojega!
+const API_KEY = 'ni potreben';
+const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
+
+function handleClientLoad() {
+  gapi.load('client:auth2', initClient);
+}
+
+function initClient() {
+  gapi.client.init({
+    apiKey: API_KEY,
+    clientId: CLIENT_ID,
+    discoveryDocs: [DISCOVERY_DOC],
+    scope: SCOPES
+  }).then(() => {
+    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+    updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+  });
+}
+
+function updateSigninStatus(isSignedIn) {
+  if (isSignedIn) {
+    googleUser = gapi.auth2.getAuthInstance().currentUser.get();
+    googleToken = googleUser.getAuthResponse().access_token;
+    document.getElementById('googleStatus').innerHTML = '✅ Povezano z Google Koledarjem';
+    document.getElementById('connectGoogleBtn').textContent = 'Povezano!';
+    document.getElementById('connectGoogleBtn').disabled = true;
+  } else {
+    document.getElementById('googleStatus').innerHTML = '';
+  }
+}
+
+document.getElementById('connectGoogleBtn').addEventListener('click', () => {
+  gapi.auth2.getAuthInstance().signIn();
+});
+
+// Sinhroniziraj nalogo
+async function syncToGoogleCalendar(note) {
+  if (!googleToken) return;
+
+  const datum = note.datum ? new Date(note.datum).toISOString().split('T')[0] : null;
+
+  const payload = {
+    credential: googleUser.getAuthResponse().id_token,
+    accessToken: googleToken,
+    zapisID: note.zapisID.toString(),
+    zapis: note.zapis,
+    opis: note.opis || '',
+    situacija: note.situacija,
+    datum: datum
+  };
+
+  try {
+    await fetch('http://localhost:8080/api/calendar/sync', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch (err) {
+    console.error('Napaka pri Google sync:', err);
+  }
+}
+
 // ---------- končni klic ----------
 loadNotes();
 
