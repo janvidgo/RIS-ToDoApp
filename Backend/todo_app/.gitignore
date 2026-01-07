@@ -34,3 +34,8 @@ build/
 
 # Environment configuration
 .env
+
+#credentials.json
+**/credentials.json
+src/main/resources/credentials.json
+tokens/
