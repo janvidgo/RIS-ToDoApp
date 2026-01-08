@@ -282,55 +282,6 @@ async function loadNotes() {
   }
 }
 
-// ---------- dodajanje nove naloge ----------
-const addNoteForm = document.getElementById("addNoteForm");
-if (addNoteForm) {
-  addNoteForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const noteName = document.getElementById("noteName").value.trim();
-    const noteOpis = document.getElementById("noteOpis").value.trim();
-    const dueDate = document.getElementById("noteDueDate").value; // YYYY-MM-DD
-
-    if (!noteName) {
-      Swal.fire("Napaka", "Vnesi ime naloge!", "warning");
-      return;
-    }
-    if (!noteOpis) {
-      Swal.fire("Napaka", "Vnesi opis naloge!", "warning");
-      return;
-    }
-
-    const newNote = {
-      zapis: noteName,
-      opis: noteOpis,
-      situacija: 0,
-      datum: dueDate || null
-    };
-
-    try {
-      const response = await fetch("http://localhost:8080/zapis", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newNote)
-      });
-
-      if (response.ok) {
-        document.getElementById("noteName").value = "";
-        document.getElementById("noteOpis").value = "";
-        document.getElementById("noteDueDate").value = "";
-        Swal.fire({ icon: 'success', title: 'Naloga dodana!', timer: 1200, showConfirmButton: false });
-        loadNotes();
-      } else {
-        const error = await response.text();
-        Swal.fire('Napaka', error || 'Pri dodajanju.', 'error');
-      }
-    } catch (err) {
-      Swal.fire('Napaka', 'Ni povezave s strežnikom.', 'error');
-    }
-  });
-}
-
 // ---------- filter, reset, izvoz (ostane enako kot prej) ----------
 const filtrirajForm = document.getElementById("filterForm");
 if (filtrirajForm) {
@@ -376,7 +327,7 @@ document.getElementById("resetFilters")?.addEventListener("click", () => {
 });
 
 
-let googleToken = null;
+/*let googleToken = null;
 let googleUser = null;
 
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
@@ -385,7 +336,7 @@ const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
 fetch('/config')
   .then(res => res.json())
   .then(config => {
-    const CLIENT_ID = config.CLIENT_ID;
+    const CLIENT_ID =680597412936-ir1nn0963inpqrn395d4c5envsn41dj2.apps.googleusercontent.com ;
 
     gapi.load('client:auth2', () => {
       gapi.client.init({
@@ -414,7 +365,142 @@ function updateSigninStatus(isSignedIn) {
     document.getElementById('connectGoogleBtn').disabled = true;
   }
 }
+*/
+const CLIENT_ID = '693783271820-no5q2aqmhucsdpao9ske2u1lsh9fduok.apps.googleusercontent.com';
+const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
 
+let googleToken;
+let tokenClient;
+
+function handleGoogleLogin() {
+  tokenClient = google.accounts.oauth2.initTokenClient({
+    client_id: CLIENT_ID,
+    scope: SCOPES,
+    callback: async (tokenResponse) => {
+      googleToken = tokenResponse.access_token;
+      document.getElementById('googleStatus').textContent = '✅ Povezano z Google Koledarjem';
+      document.getElementById('connectGoogleBtn').textContent = 'Povezano';
+      document.getElementById('connectGoogleBtn').disabled = true;
+      console.log('Token:', googleToken);
+
+      try {
+        const res = await fetch('http://localhost:8080/zapis');
+        const notes = await res.json();
+        for (const note of notes) {
+          await addEventToGoogleCalendar(note);
+        }
+        console.log('Vse obstoječe naloge dodane v Google Calendar');
+      } catch (err) {
+        console.error('Napaka pri dodajanju obstoječih nalog:', err);
+      }
+    },
+  });
+
+  tokenClient.requestAccessToken({ prompt: 'consent' }); // obvezno za popup
+}
+
+document.getElementById('connectGoogleBtn')?.addEventListener('click', handleGoogleLogin);
+
+async function addEventToGoogleCalendar(note) {
+  if (!googleToken) return; // Google ni povezan
+
+  let startDate, endDate;
+  if (note.datum) {
+    // Zagotovi, da je datum format YYYY-MM-DD brez časovnega dela
+    startDate = note.datum.split('T')[0]; 
+
+    // end date = naslednji dan
+    const d = new Date(startDate);
+    d.setDate(d.getDate() + 1);
+    endDate = d.toISOString().split('T')[0];
+  } else {
+    const today = new Date();
+    startDate = today.toISOString().split('T')[0];
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    endDate = tomorrow.toISOString().split('T')[0];
+  }
+
+  const event = {
+    summary: note.zapis,
+    description: note.opis || '',
+    start: { date: startDate },
+    end: { date: endDate }
+  };
+
+  try {
+    const res = await fetch(
+      'https://www.googleapis.com/calendar/v3/calendars/primary/events',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${googleToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(event)
+      }
+    );
+
+    if (!res.ok) {
+      const err = await res.json();
+      console.error('Napaka pri dodajanju v Google Calendar:', err);
+    } else {
+      console.log('Dodano v Google Calendar!');
+    }
+  } catch (err) {
+    console.error('Napaka:', err);
+  }
+}
+
+// ---------- dodajanje nove naloge ----------
+const addNoteForm = document.getElementById("addNoteForm");
+if (addNoteForm) {
+  addNoteForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const noteName = document.getElementById("noteName").value.trim();
+    const noteOpis = document.getElementById("noteOpis").value.trim();
+    const dueDate = document.getElementById("noteDueDate").value; // YYYY-MM-DD
+
+    if (!noteName) {
+      Swal.fire("Napaka", "Vnesi ime naloge!", "warning");
+      return;
+    }
+    if (!noteOpis) {
+      Swal.fire("Napaka", "Vnesi opis naloge!", "warning");
+      return;
+    }
+
+    const newNote = {
+      zapis: noteName,
+      opis: noteOpis,
+      situacija: 0,
+      datum: dueDate || null
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/zapis", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newNote)
+      });
+
+      if (response.ok) {
+        document.getElementById("noteName").value = "";
+        document.getElementById("noteOpis").value = "";
+        document.getElementById("noteDueDate").value = "";
+        Swal.fire({ icon: 'success', title: 'Naloga dodana!', timer: 1200, showConfirmButton: false });
+        addEventToGoogleCalendar(newNote);
+        loadNotes();
+      } else {
+        const error = await response.text();
+        Swal.fire('Napaka', error || 'Pri dodajanju.', 'error');
+      }
+    } catch (err) {
+      Swal.fire('Napaka', 'Ni povezave s strežnikom.', 'error');
+    }
+  });
+}
 
 // Zaženemo nalaganje nalog
 loadNotes();

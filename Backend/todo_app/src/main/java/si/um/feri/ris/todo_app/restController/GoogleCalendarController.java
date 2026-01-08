@@ -22,7 +22,7 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3123")
 public class GoogleCalendarController {
 
-    private static final String CLIENT_ID = "TVÓJ_GOOGLE_CLIENT_ID_TUKAJ"; // tukaj bo jan dal svoj client ID
+    private static final String CLIENT_ID = "693783271820-no5q2aqmhucsdpao9ske2u1lsh9fduok.apps.googleusercontent.com"; // tukaj bo jan dal svoj client ID
 
     // Za shranjevanje event ID-jev (v produkciji shrani v bazo!)
     private final Map<String, String> taskToEventId = new HashMap<>();
@@ -50,12 +50,13 @@ public class GoogleCalendarController {
                     .build();
 
             Event event = new Event()
+                    .setId("todo-" + request.getZapisID())
                     .setSummary("📌 " + request.getZapis())
                     .setDescription(
                             request.getOpis() +
                             "\n\nNapredek: " + request.getSituacija() + "%" +
                             "\nSinhronizirano iz moje TODO app 🚀"
-                    );
+                    ).setReminders(new Event.Reminders().setUseDefault(false).setOverrides(Collections.emptyList()));
 
             // Če ima rok → celodnevni dogodek
             if (request.getDatum() != null && !request.getDatum().isEmpty()) {
@@ -64,15 +65,6 @@ public class GoogleCalendarController {
                 event.setStart(eventDate);
                 event.setEnd(eventDate);
             }
-
-            // Dodaj opomnike
-            EventReminder[] reminderOverrides = new EventReminder[] {
-                new EventReminder().setMethod("popup").setMinutes(60), // 1 ura prej
-                new EventReminder().setMethod("email").setMinutes(24 * 60) // 1 dan prej
-            };
-            event.setReminders(new Event.Reminders()
-                    .setUseDefault(false)
-                    .setOverrides(java.util.Arrays.asList(reminderOverrides)));
 
             String eventId = taskToEventId.get(request.getZapisID());
             if (eventId != null) {

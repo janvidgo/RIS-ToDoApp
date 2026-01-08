@@ -1,16 +1,9 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-require('dotenv').config({
-  path: path.join(__dirname, '.env')
-});
 
 // Staticne datoteke (html, js, css)
 app.use(express.static(path.join(__dirname, '/')));
-
-app.get('/config', (req, res) => {
-  res.json({ CLIENT_ID: process.env.CLIENT_ID });
-});
 
 // Zagon strežnika
 const PORT = 3123;

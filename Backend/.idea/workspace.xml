@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9cce4e2e-2a61-4868-ad25-038a0e708873" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_app/src/main/java/si/um/feri/ris/todo_app/vao/Zapis.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo_app/src/main/java/si/um/feri/ris/todo_app/vao/Zapis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_app/src/main/java/si/um/feri/ris/todo_app/restController/GoogleCalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo_app/src/main/java/si/um/feri/ris/todo_app/restController/GoogleCalendarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/js/notes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/js/notes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/notes.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/notes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +215,7 @@
       <workItem from="1767559533276" duration="4327000" />
       <workItem from="1767604094720" duration="825000" />
       <workItem from="1767715215861" duration="474000" />
-      <workItem from="1767862664571" duration="2855000" />
+      <workItem from="1767862664571" duration="7576000" />
     </task>
     <servers />
   </component>
