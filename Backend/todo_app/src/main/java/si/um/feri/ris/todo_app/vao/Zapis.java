@@ -69,4 +69,12 @@ public class Zapis {
     public void setOpis(String opis) {
         this.opis = opis;
     }
+
+    public Date getDatum() {
+        return datum;
+    }
+
+    public void setDatum(Date datum) {
+        this.datum = datum;
+    }
 }
