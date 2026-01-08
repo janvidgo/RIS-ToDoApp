@@ -375,10 +375,7 @@ document.getElementById("resetFilters")?.addEventListener("click", () => {
   loadNotes();
 });
 
-// Izvoz (CSV in PDF) – ostaja enako
-// ... (tvoj obstoječi kod za exportBtn, exportCSV, exportPDF itd.)
 
-// Google Calendar – osnovna struktura (ko boš dodala Client ID)
 let googleToken = null;
 let googleUser = null;
 
@@ -390,25 +387,23 @@ fetch('/config')
   .then(config => {
     const CLIENT_ID = config.CLIENT_ID;
 
-    gapi.load('client:auth2', initClient);
-  
+    gapi.load('client:auth2', () => {
+      gapi.client.init({
+        clientId: CLIENT_ID,
+        discoveryDocs: [DISCOVERY_DOC],
+        scope: SCOPES
+      }).then(() => {
+        const authInstance = gapi.auth2.getAuthInstance();
 
-function initClient() {
-  gapi.client.init({  
-    clientId: CLIENT_ID,
-    discoveryDocs: [DISCOVERY_DOC],
-    scope: SCOPES
-  }).then(() => {
-    const authInstance = gapi.auth2.getAuthInstance();
-    authInstance.isSignedIn.listen(updateSigninStatus);
-    updateSigninStatus(authInstance.isSignedIn.get());
+        authInstance.isSignedIn.listen(updateSigninStatus);
+        updateSigninStatus(authInstance.isSignedIn.get());
 
-    document.getElementById('connectGoogleBtn')?.addEventListener('click', () => {
-      authInstance.signIn();
+        document
+          .getElementById('connectGoogleBtn')
+          ?.addEventListener('click', () => authInstance.signIn());
+      });
     });
   });
-}
-});
 
 function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
@@ -420,8 +415,6 @@ function updateSigninStatus(isSignedIn) {
   }
 }
 
-// Sinhroniziraj po uspešnem shranjevanju (pokliči to po loadNotes() po uspehu)
-// primer: syncToGoogleCalendar(note);
 
 // Zaženemo nalaganje nalog
 loadNotes();

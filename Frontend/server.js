@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-require('dotenv').config();
+require('dotenv').config({
+  path: path.join(__dirname, '.env')
+});
 
 // Staticne datoteke (html, js, css)
 app.use(express.static(path.join(__dirname, '/')));
