@@ -489,18 +489,19 @@ if (exportPdfBtn) {
 let googleToken = null;
 let googleUser = null;
 
-const CLIENT_ID = 'TVÓJ_CLIENT_ID_IZ_GOOGLE_CLOUDA'; // sem vstav svojega!
-const API_KEY = 'ni potreben';
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
 const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
 
-function handleClientLoad() {
-  gapi.load('client:auth2', initClient);
-}
+fetch('/config')
+  .then(res => res.json())
+  .then(config => {
+    const CLIENT_ID = config.CLIENT_ID;
+
+    gapi.load('client:auth2', initClient);
+  
 
 function initClient() {
-  gapi.client.init({
-    apiKey: API_KEY,
+  gapi.client.init({  
     clientId: CLIENT_ID,
     discoveryDocs: [DISCOVERY_DOC],
     scope: SCOPES
@@ -509,6 +510,7 @@ function initClient() {
     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
   });
 }
+});
 
 function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {

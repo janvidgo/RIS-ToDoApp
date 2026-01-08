@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS Zapis (
   Zapis VARCHAR(100) NOT NULL,
   Opis VARCHAR(255) NOT NULL,
   Progress INT NOT NULL,	
-  RokNaloge DATE NOT NULL,
+  RokNaloge DATE,
   PRIMARY KEY (ZapisID)
   );
   
