@@ -2,13 +2,7 @@ package si.um.feri.ris.todo_app.vao;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
-@Data
 @Entity
 @Table(name = "Slike")
 public class Slike {
@@ -18,7 +12,7 @@ public class Slike {
     @Column(name = "SlikeID")
     private int slikeID;
 
-    @Column(name = "Slika")
+    @Column(name = "Slika", columnDefinition = "LONGTEXT")
     private String slika;
 
     @ManyToOne
@@ -26,24 +20,34 @@ public class Slike {
     @JsonIgnore
     private Zapis zapis;
 
+    // Konstruktor
     public Slike() {}
 
-    public void setSlika(String slika) {
-        this.slika = slika;
-    }
-
-    public void setZapis(Zapis zapis) {
-        this.zapis = zapis;
-    }
-
+    // GETTERJI in SETTERJI
     public int getSlikeID() {
         return slikeID;
+    }
+
+    public void setSlikeID(int slikeID) {
+        this.slikeID = slikeID;
     }
 
     public String getSlika() {
         return slika;
     }
 
+    public void setSlika(String slika) {
+        this.slika = slika;
+    }
+
+    public Zapis getZapis() {
+        return zapis;
+    }
+
+    public void setZapis(Zapis zapis) {
+        this.zapis = zapis;
+    }
+
+    // DTO
     public record SlikeDTO(int slikeID, String slika) {}
 }
-

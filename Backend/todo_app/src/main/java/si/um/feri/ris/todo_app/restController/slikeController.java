@@ -66,12 +66,12 @@ public class slikeController {
     }
 }
 
-    @GetMapping("/naloga/{zapisID}")
-    public List<Slike.SlikeDTO> getImages(@PathVariable int zapisID) {
-        return slikeRepository.findByZapis_zapisID(zapisID)
-                .stream()
-                .map(s -> new Slike.SlikeDTO(s.getSlikeID(), s.getSlika()))
-                .toList();
-    }
+ @GetMapping("/naloga/{zapisID}")
+public List<Slike.SlikeDTO> getImages(@PathVariable int zapisID) {
+    return slikeRepository.findByZapisID(zapisID)  // ← nova metoda
+            .stream()
+            .map(s -> new Slike.SlikeDTO(s.getSlikeID(), s.getSlika()))
+            .toList();
+}
 }
 
