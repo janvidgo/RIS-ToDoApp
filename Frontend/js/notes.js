@@ -173,7 +173,7 @@ async function syncTaskToGoogleCalendar(note) {
 
   try {
     // Pridobi ID token za verifikacijo
-    const credential = googleUser?.getAuthResponse().id_token || '';
+    const credential = null;
 
     const response = await fetch('http://localhost:8080/api/calendar/sync', {
       method: 'POST',
@@ -189,6 +189,7 @@ async function syncTaskToGoogleCalendar(note) {
       })
     });
 
+    console.log(note.datum)
     const result = await response.json();
 
     if (response.ok && result.success) {
@@ -550,7 +551,7 @@ if (addNoteForm) {
       Swal.fire("Napaka", "Vnesi opis naloge!", "warning");
       return;
     }
-
+    console.log(dueDate)
     const newNote = {
       zapis: noteName,
       opis: noteOpis,

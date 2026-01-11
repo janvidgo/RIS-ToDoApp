@@ -1,17 +1,20 @@
 package si.um.feri.ris.todo_app.restController;
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -40,17 +43,11 @@ public class GoogleCalendarController {
                     .setAudience(Collections.singletonList(CLIENT_ID))
                     .build();
 
-            GoogleIdToken idToken = verifier.verify(request.getCredential());
-            if (idToken == null) {
-                updateSyncStatus(zapisID, SyncStatusEnum.NAPAKA, "Neveljaven Google token", null);
-                return ResponseEntity.badRequest().body(createErrorResponse("Neveljaven Google token"));
-            }
-
             // Ustvari Calendar servis z access tokenom
             Calendar service = new Calendar.Builder(
                     new NetHttpTransport(),
                     GsonFactory.getDefaultInstance(),
-                    new com.google.api.client.googleapis.auth.oauth2.GoogleCredential()
+                    new GoogleCredential()
                             .setAccessToken(request.getAccessToken()))
                     .setApplicationName("Todo App")
                     .build();
@@ -64,12 +61,14 @@ public class GoogleCalendarController {
                     )
                     .setReminders(new Event.Reminders().setUseDefault(false).setOverrides(Collections.emptyList()));
 
-            // Če ima rok → celodnevni dogodek
             if (request.getDatum() != null && !request.getDatum().isEmpty()) {
-                com.google.api.client.util.DateTime date = new com.google.api.client.util.DateTime(request.getDatum());
-                EventDateTime eventDate = new EventDateTime().setDate(date);
-                event.setStart(eventDate);
-                event.setEnd(eventDate);
+                LocalDate startDate = LocalDate.parse(request.getDatum().substring(0, 10));
+
+                EventDateTime start = new EventDateTime().setDate(DateTime.parseRfc3339(startDate.toString())); // STRING
+                EventDateTime end = new EventDateTime().setDate(DateTime.parseRfc3339(startDate.toString())); // STRING
+
+                event.setStart(start);
+                event.setEnd(end);
             }
 
             String eventId = taskToEventId.get(zapisID);
