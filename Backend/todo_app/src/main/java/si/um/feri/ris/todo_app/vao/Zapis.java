@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Zapis {
     private int situacija;
 
     @Column(name = "RokNaloge")
-    private Date datum;
+    private LocalDate datum;
 
     @OneToMany(mappedBy = "zapis", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("zapis")
@@ -69,11 +70,11 @@ public class Zapis {
         this.situacija = situacija;
     }
 
-    public Date getDatum() {
+    public LocalDate getDatum() {
         return datum;
     }
 
-    public void setDatum(Date datum) {
+    public void setDatum(LocalDate datum) {
         this.datum = datum;
     }
 

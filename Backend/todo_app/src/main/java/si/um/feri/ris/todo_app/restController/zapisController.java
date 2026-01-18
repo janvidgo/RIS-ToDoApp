@@ -96,20 +96,16 @@ public class zapisController {
     public ResponseEntity<List<Map<String, Object>>> getUpcomingDeadlines(
             @RequestParam(defaultValue = "3") int days) {
 
-        Date today = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(today);
-        cal.add(Calendar.DATE, days);
-        Date deadline = cal.getTime();
+        LocalDate today = LocalDate.now();
+        LocalDate deadline = today.plusDays(days);
 
         List<Zapis> allZapisi = zapisRepository.findAll();
 
         List<Map<String, Object>> upcomingTasks = allZapisi.stream()
                 .filter(z -> z.getDatum() != null)
                 .filter(z -> {
-                    Date taskDate = z.getDatum();
-                    // Naloga mora biti med danes in deadline (vključno)
-                    return !taskDate.before(today) && !taskDate.after(deadline);
+                    LocalDate taskDate = z.getDatum();
+                    return (!taskDate.isBefore(today) && !taskDate.isAfter(deadline));
                 })
                 .map(z -> {
                     Map<String, Object> taskInfo = new HashMap<>();
@@ -120,8 +116,7 @@ public class zapisController {
                     taskInfo.put("situacija", z.getSituacija());
 
                     // Izračunaj razliko v dnevih
-                    long diffInMillies = z.getDatum().getTime() - today.getTime();
-                    long daysUntil = diffInMillies / (1000 * 60 * 60 * 24);
+                    long daysUntil = java.time.temporal.ChronoUnit.DAYS.between(today, z.getDatum());
                     taskInfo.put("daysUntilDue", daysUntil);
 
                     return taskInfo;

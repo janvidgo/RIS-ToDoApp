@@ -626,3 +626,4 @@ async function checkUpcomingDeadlines() {
 
 // Zaženemo nalaganje nalog
 loadNotes();
+checkUpcomingDeadlines();
