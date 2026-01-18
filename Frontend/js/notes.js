@@ -595,6 +595,34 @@ if (addNoteForm) {
     }
   });
 }
+// Opomnik za tri dni pred iztekom
+async function checkUpcomingDeadlines() {
+  try {
+    const res = await fetch('http://localhost:8080/zapis/upcoming-deadlines?days=3');
+    const upcoming = await res.json();
+
+    if (upcoming.length > 0) {
+      const taskList = upcoming.map(task =>
+          `<div style="text-align:left; padding:8px; border-left:3px solid #ff9800;">
+          <strong>${escapeHtml(task.zapis)}</strong><br>
+          <small>Rok: ${new Date(task.datum).toLocaleDateString('sl-SI')} 
+          (še ${task.daysUntilDue} ${task.daysUntilDue === 1 ? 'dan' : 'dni'})</small>
+        </div>`
+      ).join('<br>');
+
+      Swal.fire({
+        icon: 'warning',
+        title: 'Opomnik!',
+        html: `Imate <strong>${upcoming.length}</strong> ${upcoming.length === 1 ? 'nalogo' : 'naloge'} 
+               z bližajočim se rokom:<br><br>${taskList}`,
+        confirmButtonText: 'V redu',
+        confirmButtonColor: '#ff9800'
+      });
+    }
+  } catch (err) {
+    console.error('Napaka pri preverjanju rokov:', err);
+  }
+}
 
 // Zaženemo nalaganje nalog
 loadNotes();

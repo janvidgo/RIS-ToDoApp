@@ -10,7 +10,10 @@ import org.springframework.web.server.ResponseStatusException;
 import si.um.feri.ris.todo_app.repository.ZapisRepository;
 import si.um.feri.ris.todo_app.vao.Zapis;
 
-import java.util.List;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:3123")
 @RestController
@@ -86,5 +89,45 @@ public class zapisController {
             return zapisRepository.findByZapisContainingIgnoreCaseAndSituacijaBetween(zapis, min, max);
         }
         return zapisRepository.findAll();
+    }
+
+    //Novi za opomnik
+    @GetMapping("/upcoming-deadlines")
+    public ResponseEntity<List<Map<String, Object>>> getUpcomingDeadlines(
+            @RequestParam(defaultValue = "3") int days) {
+
+        Date today = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(today);
+        cal.add(Calendar.DATE, days);
+        Date deadline = cal.getTime();
+
+        List<Zapis> allZapisi = zapisRepository.findAll();
+
+        List<Map<String, Object>> upcomingTasks = allZapisi.stream()
+                .filter(z -> z.getDatum() != null)
+                .filter(z -> {
+                    Date taskDate = z.getDatum();
+                    // Naloga mora biti med danes in deadline (vključno)
+                    return !taskDate.before(today) && !taskDate.after(deadline);
+                })
+                .map(z -> {
+                    Map<String, Object> taskInfo = new HashMap<>();
+                    taskInfo.put("zapisID", z.getZapisID());
+                    taskInfo.put("zapis", z.getZapis());
+                    taskInfo.put("opis", z.getOpis());
+                    taskInfo.put("datum", z.getDatum());
+                    taskInfo.put("situacija", z.getSituacija());
+
+                    // Izračunaj razliko v dnevih
+                    long diffInMillies = z.getDatum().getTime() - today.getTime();
+                    long daysUntil = diffInMillies / (1000 * 60 * 60 * 24);
+                    taskInfo.put("daysUntilDue", daysUntil);
+
+                    return taskInfo;
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(upcomingTasks);
     }
 }
